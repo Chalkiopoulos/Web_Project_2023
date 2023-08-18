@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title> INSSALIS </title>
+        <meta name="description" content="this is the description">
+        <link rel="stylesheet" href="../styles.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+        </head>
+
+    <body>
+     <header>
+        <div>
+            <h2>
+            <span> <a href="../User_screen/User_screen.html">USER</a> </span> 
+            <span> <a href="../Map_screen/Map_screen.html">MAP</a> </span> 
+            <span> <a href="../leaderboard_screen/Leaderboard_screen.html">LEADERBOARD</a> </span> 
+            </h2>
+        </div>
+    </header>
+
+
+        <div id="map"></div> 
+        <script>
+            var map = L.map('map').setView([38.246990, 21.735468], 16);
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19,attribution: '© OpenStreetMap'}).addTo(map);
+        </script>
+        
+    </body>
+
+</html>
