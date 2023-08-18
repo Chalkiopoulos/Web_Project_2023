@@ -1,0 +1,65 @@
+create table users{
+	user_id smallint(5) AI NOT NULL PRIMARY,
+	username varchar(45),
+	password varchar(255),
+	email varchar(45),
+	is_admin BOOLEAN,
+	current_token_rate INT, *3
+	entire_token_rate INT, *4
+	reg_date DATE
+}
+
+create table tokens{
+	num_of_av_tokens INT, *2
+	count_date DATE,
+}
+
+create table markets{
+	market_id smallint(5) AI NOT NULL PRIMARY,
+	market_name varchar(45),
+	num_of_av_sales INT(3), *1
+	stocks_id smallint(5) foreignkey(stocks)
+}
+
+create table stocks{
+	stock_id smallint(5) NOT NULL PRIMARY,
+	item_name varchar(45),
+	item_amount varchar(45),
+	item_cat varchar(45),
+	item_subcat varchar(45),
+	item_price INT,
+	item_img img,
+	has_sale BOOLEAN,
+	sale_id smallint(5) foreignkey,
+}
+
+create table sales{
+	sale_id smallint(5) AI NOT NULL,
+	sale_per smallint(3),
+	reg_date DATE,
+	num_of_likes INT,
+	num_of_dislikes INT
+	user_id smallint(5) foreignkey
+}
+
+
+
+*1
+//The num_of_av_sales variable will be automatically updated whenever the
+stocks table is updated. num_of_av_sales will be equal to the amount of items
+with an item_sale number bigger than 0.// 
+ 
+*2
+//The num_of_av_tokens variable will be automatically updated everytime the
+current date is the first day of a month, and it will be reset to 0 in the last
+day of the current month//
+
+*3
+//The token_rate variable will be reset to zero everytime the current date is
+the first day of the month. Also everytime a sale with the user_id of the user
+is update(specifically the num_of_likes || num_of_dislikes) then the appropriate
+update needs to happen in the users token_rate(specifically +5 for every like
+|| -1 for every dislike)//
+
+*4
+//At the end of a month the current_token_rate is added to the entire_token_rate//
